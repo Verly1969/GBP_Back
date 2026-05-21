@@ -3,4 +3,5 @@
   <Project Path="GBP.Core/GBP.Core.csproj" />
   <Project Path="GBP.Domain/GBP.Domain.csproj" />
   <Project Path="GBP.Infra/GBP.Infra.csproj" />
+  <Project Path="GBP.Security/GBP.Security.csproj" />
 </Solution>
