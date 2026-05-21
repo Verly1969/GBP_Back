@@ -2,4 +2,5 @@
   <Project Path="GBP.API/GBP.API.csproj" />
   <Project Path="GBP.Core/GBP.Core.csproj" />
   <Project Path="GBP.Domain/GBP.Domain.csproj" />
+  <Project Path="GBP.Infra/GBP.Infra.csproj" />
 </Solution>
