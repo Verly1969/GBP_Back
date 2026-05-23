@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GBP.Domain;
+namespace GBP.Domain.Entities;
 
 public class Category
 {
