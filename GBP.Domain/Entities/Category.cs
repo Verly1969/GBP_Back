@@ -16,4 +16,5 @@ public class Category
     // Navigation properties
     public Category? Parent { get; set; }
     public ICollection<Category> Children { get; set; } = [];
+    public ICollection<Transaction> Transactions { get; set; } = [];
 }
