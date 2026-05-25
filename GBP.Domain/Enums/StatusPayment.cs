@@ -4,10 +4,11 @@ using System.Text;
 
 namespace GBP.Domain.Enums
 {
-    public enum StatusCredit
+    public enum StatusPayment
     {
-        Active,
-        Repaid,
-        Late
+        Pending,
+        Paid,
+        Late,
+        Canceled,
     }
 }
