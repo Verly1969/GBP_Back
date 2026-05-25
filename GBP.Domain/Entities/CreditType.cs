@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GBP.Domain.Entities
-{
-    public class CreditType
-    {
-        public int Id { get; set; }
-        public required string Name { get; set; }
-        public string? Description { get; set; }
+namespace GBP.Domain.Entities;
 
-        // Navigation properties 
-        // Credit
-    }
+public class CreditType
+{
+    public int Id { get; set; }
+    public required string Name { get; set; }
+    public string? Description { get; set; }
+
+    // Navigation properties - Child entitie
+    public ICollection<Credit> Credits { get; set; } = [];
 }
