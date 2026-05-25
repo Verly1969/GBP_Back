@@ -19,7 +19,7 @@ public class Transaction
 
     // Navigation Properties - Parent entities
     public required Account SourceAccount { get; set; }
-    public required Account? TargetAccount { get; set; }
+    public Account? TargetAccount { get; set; }
     public required Category Categorie { get; set; }
     public required TransactionType TransactionType { get; set; }
 }
