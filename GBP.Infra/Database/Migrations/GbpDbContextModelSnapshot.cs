@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace GBP.Infra.Database
+namespace GBP.Infra.Database.Migrations
 {
     [DbContext(typeof(GbpDbContext))]
     partial class GbpDbContextModelSnapshot : ModelSnapshot
