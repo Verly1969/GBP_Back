@@ -10,8 +10,4 @@
     <ProjectReference Include="..\GBP.Domain\GBP.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\Repositories\" />
-  </ItemGroup>
-
 </Project>
