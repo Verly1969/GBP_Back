@@ -1,4 +1,8 @@
+using GBP.Core.Interfaces.Repositories;
+using GBP.Core.Interfaces.Services;
 using GBP.Infra.Database.Context;
+using GBP.Infra.Repositories;
+using GBP.Security.Services.Auth;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -14,6 +18,9 @@ builder.Services.AddDbContext<GbpDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("GbpDb")
         )
     );
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
