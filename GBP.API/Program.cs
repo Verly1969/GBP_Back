@@ -1,5 +1,10 @@
+using GBP.Core.Interfaces.Repositories;
+using GBP.Core.Interfaces.Services;
 using GBP.Infra.Database.Context;
+using GBP.Infra.Repositories;
+using GBP.Security.Services.Auth;
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,12 +19,20 @@ builder.Services.AddDbContext<GbpDbContext>(options =>
         )
     );
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference(options =>
+    {
+        options.Title = "Gestion Budget Personnel API";
+        options.ForceDarkMode();
+    });
 }
 
 app.UseHttpsRedirection();
