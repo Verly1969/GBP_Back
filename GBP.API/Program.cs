@@ -1,5 +1,6 @@
 using GBP.Infra.Database.Context;
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference(options =>
+    {
+        options.Title = "Gestion Budget Personnel API";
+        options.ForceDarkMode();
+    });
 }
 
 app.UseHttpsRedirection();
