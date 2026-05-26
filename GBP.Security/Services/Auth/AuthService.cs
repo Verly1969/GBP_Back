@@ -1,4 +1,5 @@
-﻿using GBP.Core.Interfaces.Services;
+﻿using GBP.Core.Interfaces.Repositories;
+using GBP.Core.Interfaces.Services;
 using GBP.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,18 @@ using System.Text;
 
 namespace GBP.Security.Services.Auth
 {
-    public class AuthService : IAuthService
+    public class AuthService(IUserRepository userRepository) : IAuthService
     {
         public Task<User> LoginAsync(string email, string password)
         {
-            throw new NotImplementedException();
+            var user = userRepository.GetByEmailAsync(email);
+
+            if (user == null) 
+            {
+                throw new UnauthorizedAccessException("Invalid email or password");
+            }
+
+            return user;
         }
     }
 }
