@@ -11,7 +11,7 @@ namespace GBP.Infra.Database.Configurations;
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     private static readonly Guid AdminId = Guid.Parse("00000000-0000-0000-0000-000000000001");
-    private const string AdminPasswordHash = "password-hash"; // Replace with actual hash in production
+    private const string AdminPasswordHash = "0j+VVqhClNAGta6K5P4ZMQ==.+uG9kBwoXQibe2UdhYsqC8DDiVZpXWDrLPXzS83mLtg="; // Replace with actual hash in production
     private const string AdminSecretKeyHash = "secret-key-hash"; // Replace with actual hash in production
     public void Configure(EntityTypeBuilder<User> builder)
     {

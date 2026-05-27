@@ -10,6 +10,7 @@ namespace GBP.Infra.Database.Context
     {
         // DbSets for entities
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<SecurityLog> SecurityLogs { get; set; } = null!;
 
         // Override OnModelCreating to apply configurations
         protected override void OnModelCreating(ModelBuilder modelBuilder)

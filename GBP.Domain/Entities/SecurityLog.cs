@@ -15,5 +15,5 @@ public class SecurityLog
     public DateTime? StartBan { get; set; }
     public DateTime? EndBan { get; set; }
     public string? BanRaison { get; set; }
-    public required string CreatedBy { get; set; }
+    public string? CreatedBy { get; set; }
 }
