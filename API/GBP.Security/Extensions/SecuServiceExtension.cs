@@ -10,11 +10,6 @@ namespace GBP.Security.Extensions
 {
     public static class SecuServiceExtension
     {
-        /// <summary>
-        /// Ajoute les services de sécurité à l'injection de dépendances.
-        /// </summary>
-        /// <param name="services">La collection de services.</param>
-        /// <param name="configuration">La configuration de l'application.</param>
         public static void AddSecuService(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IAuthService, AuthService>();
