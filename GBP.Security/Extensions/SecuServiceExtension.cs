@@ -1,5 +1,5 @@
 ﻿using GBP.Core.Interfaces.Repositories;
-using GBP.Core.Interfaces.Services;
+using GBP.Core.Interfaces.Services.Auth;
 using GBP.Infra.Repositories;
 using GBP.Security.Middlewares;
 using GBP.Security.Services.Auth;

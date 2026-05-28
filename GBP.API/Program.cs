@@ -2,6 +2,7 @@ using GBP.Core.Interfaces.Repositories;
 using GBP.Core.Interfaces.Services;
 using GBP.Infra.Database.Context;
 using GBP.Infra.Repositories;
+using GBP.Infra.Extensions;
 using GBP.Security.Extensions;
 using GBP.Security.Services.Auth;
 using Microsoft.EntityFrameworkCore;
@@ -15,14 +16,8 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<GbpDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("GbpDb")
-        )
-    );
-
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-
 builder.Services.AddSecuService(builder.Configuration);
+builder.Services.AddInfraServices(builder.Configuration);
 
 var app = builder.Build();
 

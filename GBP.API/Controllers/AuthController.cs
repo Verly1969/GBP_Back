@@ -1,6 +1,6 @@
 ﻿using GBP.API.DTOs.Request;
 using GBP.API.DTOs.Response;
-using GBP.Core.Interfaces.Services;
+using GBP.Core.Interfaces.Services.Auth;
 using GBP.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

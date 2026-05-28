@@ -1,5 +1,5 @@
 ﻿using GBP.Core.Interfaces.Repositories;
-using GBP.Core.Interfaces.Services;
+using GBP.Core.Interfaces.Services.Auth;
 using GBP.Domain.Entities;
 using System;
 using System.Collections.Generic;

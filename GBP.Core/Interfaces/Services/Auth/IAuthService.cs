@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GBP.Core.Interfaces.Services
+namespace GBP.Core.Interfaces.Services.Auth
 {
     public interface IAuthService
     {
