@@ -1,11 +1,14 @@
 ﻿using GBP.Core.Interfaces.Repositories;
 using GBP.Core.Interfaces.Services.Auth;
+using GBP.Core.Interfaces.Services.Tools;
 using GBP.Infra.Repositories;
 using GBP.Security.Middlewares;
 using GBP.Security.Services.Auth;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,8 +25,28 @@ namespace GBP.Security.Extensions
         public static void AddSecuService(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<ISecurityLogRepository, SecurityLogRepository>();
             services.AddMemoryCache();
+
+            // Configuration des options de JWT à partir du fichier de configuration
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true, // Valide l'émetteur du token
+                        ValidateAudience = true, // Valide le destinataire du token
+                        ValidateLifetime = true, // Valide la durée de vie du token
+                        ValidateIssuerSigningKey = true, // Valide la clé de signature de l'émetteur
+                        ValidIssuer = configuration["Jwt:Issuer"], // L'émetteur du token ("GBP")
+                        ValidAudience = configuration["Jwt:Audience"], // Le destinataire du token ("GBP")
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(configuration["Jwt:Secret"]!)) // La clé de signature du token (ex: "MyAppSecret")
+                    };
+                });
+
+            services.AddAuthorization(); // Ajoute les services d'autorisation pour permettre l'utilisation de [Authorize] dans les contrôleurs
         }
 
         // Activer le middleware de sécurité dans le pipeline de requêtes
