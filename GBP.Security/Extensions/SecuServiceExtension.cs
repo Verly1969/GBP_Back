@@ -26,6 +26,7 @@ namespace GBP.Security.Extensions
         {
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<ITotpService, TotpService>();
             services.AddScoped<ISecurityLogRepository, SecurityLogRepository>();
             services.AddMemoryCache();
 
