@@ -27,11 +27,13 @@ namespace GBP.Infra.Repositories
         /// <param name="bannedBy"></param>
         /// <param name="durationMinutes"></param>
         /// <returns></returns>
-        public async Task BanIpAsync(string ipAddress, string raison, string bannedBy, int? durationMinutes = null)
+        public async Task BanIpAsync(
+            string ipAddress, string raison, string bannedBy, int? durationMinutes = null)
         {
             // Ne pas bannir une IP déjà bannie
             var existingBan = await context.SecurityLogs
-                .FirstOrDefaultAsync(s => s.IpAddress == ipAddress && s.IsBanned && (s.EndBan == null || s.EndBan > DateTime.UtcNow));
+                .FirstOrDefaultAsync(
+                s => s.IpAddress == ipAddress && s.IsBanned && (s.EndBan == null || s.EndBan > DateTime.UtcNow));
             if (existingBan != null)
             {
                 return;
