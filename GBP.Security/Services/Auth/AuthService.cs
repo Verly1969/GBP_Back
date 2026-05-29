@@ -80,6 +80,9 @@ namespace GBP.Security.Services.Auth
         /// <exception cref="UnauthorizedAccessException"></exception>
         public async Task<LoginResponseDto> LoginAsync(string email, string password)
         {
+            Console.WriteLine($"Email reçu: {email}");
+            Console.WriteLine($"Password reçu: {password}");
+
             // 1. Vérifier que l'utilisateur existe
             var user = await userRepository.GetByEmailAsync(email);
 
@@ -88,17 +91,29 @@ namespace GBP.Security.Services.Auth
                 throw new UnauthorizedAccessException("Invalid email or password");
             }
 
+            Console.WriteLine($"User trouvé: {user != null}");
+
             // 2. Vérifier que l'utilisateur est actif
             if (user.Status != Status.Active)
             {
                 throw new UnauthorizedAccessException("User account is not active");
             }
 
+            Console.WriteLine($"Status: {user.Status}");
+            Console.WriteLine($"PasswordHash en base: {user.PasswordHash}");
+
+
             // 3. Vérifier le mot de passe
             if (!passwordService.VerifyPassword(password, user.PasswordHash))
             {
                 throw new UnauthorizedAccessException("Invalid email or password");
             }
+
+            var isValid = passwordService.VerifyPassword(password, user.PasswordHash);
+            Console.WriteLine($"Password valide : {isValid}");
+
+            if (!isValid)
+                throw new UnauthorizedAccessException("Invalid email or password.");
 
             // 4. Première connexion : générer une clé secrète pour 2FA et retourner le QR code
             if (string.IsNullOrEmpty(user.SecretKeyHash))

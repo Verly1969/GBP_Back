@@ -11,8 +11,7 @@ namespace GBP.Infra.Database.Configurations;
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     private static readonly Guid AdminId = Guid.Parse("00000000-0000-0000-0000-000000000001");
-    private const string AdminPasswordHash = "0j+VVqhClNAGta6K5P4ZMQ==.+uG9kBwoXQibe2UdhYsqC8DDiVZpXWDrLPXzS83mLtg="; // Replace with actual hash in production
-    private const string AdminSecretKeyHash = "secret-key-hash"; // Replace with actual hash in production
+    private const string AdminPasswordHash = "v1.j8BV0YL+rRLe4si63uUFUg==.8hNiGyzHkCh33TrPllVuFHZOsFTYdm5xfr80PVWiCa4="; // Replace with actual hash in production
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.ToTable("Users");
@@ -32,7 +31,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(255);
 
         builder.Property(u => u.SecretKeyHash)
-            .IsRequired()
             .HasMaxLength(255);
 
         builder.Property(u => u.PasswordHash)
@@ -61,7 +59,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             LastName = "Admin",
             FirstName = "User",
             Email = "admin@example.com",
-            SecretKeyHash = AdminSecretKeyHash,
+            SecretKeyHash = null,
             PasswordHash = AdminPasswordHash,
             Role = Role.Admin,
             Status = Status.Active,

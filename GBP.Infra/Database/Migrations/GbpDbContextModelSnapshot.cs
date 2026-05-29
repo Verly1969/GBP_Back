@@ -116,7 +116,6 @@ namespace GBP.Infra.Database.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("SecretKeyHash")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -146,9 +145,8 @@ namespace GBP.Infra.Database.Migrations
                             Email = "admin@example.com",
                             FirstName = "User",
                             LastName = "Admin",
-                            PasswordHash = "0j+VVqhClNAGta6K5P4ZMQ==.+uG9kBwoXQibe2UdhYsqC8DDiVZpXWDrLPXzS83mLtg=",
+                            PasswordHash = "v1.j8BV0YL+rRLe4si63uUFUg==.8hNiGyzHkCh33TrPllVuFHZOsFTYdm5xfr80PVWiCa4=",
                             Role = "Admin",
-                            SecretKeyHash = "secret-key-hash",
                             Status = "Active"
                         });
                 });

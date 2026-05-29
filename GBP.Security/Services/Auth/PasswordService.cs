@@ -67,7 +67,12 @@ namespace GBP.Security.Services.Auth
         /// <returns></returns>
         public bool VerifyPassword(string password, string hashedPassword)
         {
+            Console.WriteLine($"Hash reçu : '{hashedPassword}'");
+
             var parts = hashedPassword.Split('.');
+
+            Console.WriteLine($"Nombre de parties : {parts.Length}");
+            Console.WriteLine($"Partie 0 : '{parts[0]}'");
 
             if (parts.Length != 3) return false;
 
@@ -80,20 +85,29 @@ namespace GBP.Security.Services.Auth
             {
                 // Décodage du sel et du hash à partir de la chaîne de hachage.
                 var salt = Convert.FromBase64String(parts[1]);
+                Console.WriteLine($"Sel décodé : OK ({salt.Length} bytes)");
+
                 // Le hash stocké est également décodé pour être comparé
                 // avec le hash calculé à partir du mot de passe fourni.
                 var hash = Convert.FromBase64String(parts[2]);
+                Console.WriteLine($"Hash décodé : OK ({hash.Length} bytes)");
+
                 // Calcul du hash du mot de passe fourni en utilisant le même sel
                 // et les mêmes paramètres que ceux utilisés pour générer le hash stocké.
                 var computedHash = Compute(password, salt, v);
+                Console.WriteLine($"Hash calculé : OK ({computedHash.Length} bytes)");
 
                 // Utilisation de CryptographicOperations.FixedTimeEquals pour éviter les attaques par timing.
-                return CryptographicOperations.FixedTimeEquals(hash, computedHash);
+                var result = CryptographicOperations.FixedTimeEquals(hash, computedHash);
+                Console.WriteLine($"Résultat : {result}");
+
+                return result;
 
             }
-            catch
+            catch (Exception ex)
             {
                 // En cas d'erreur de format ou de conversion, la vérification échoue.
+                Console.WriteLine($"EXCEPTION dans Verify : {ex.GetType().Name} — {ex.Message}");
                 return false;
             }
         }
