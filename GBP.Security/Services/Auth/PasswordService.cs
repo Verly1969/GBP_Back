@@ -59,7 +59,12 @@ namespace GBP.Security.Services.Auth
             return $"{DefaultVersion}.{Convert.ToBase64String(salt)}.{Convert.ToBase64String(hash)}";
         }
 
-        // Méthode publique pour vérifier si un mot de passe correspond à un hash stocké.
+        /// <summary>
+        /// Méthode de vérification du mot de passe qui compare le mot de passe fourni avec le hash stocké.
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="hashedPassword"></param>
+        /// <returns></returns>
         public bool VerifyPassword(string password, string hashedPassword)
         {
             var parts = hashedPassword.Split('.');

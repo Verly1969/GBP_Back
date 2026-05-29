@@ -19,6 +19,13 @@ namespace GBP.Security.Services.Auth
         private readonly int _jwtExpirationMinutes = int.Parse(
             configuration["Jwt:ExpirationMinutes"] ?? "60");
 
+        /// <summary>
+        /// Génère un token JWT pour un utilisateur donné. 
+        /// Le token inclut des claims tels que l'identifiant de l'utilisateur, son email et son rôle. 
+        /// Le token est signé avec une clé secrète et a une durée d'expiration définie dans la configuration.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public string GenerateToken(User user)
         {
             // 1. Les claims - les informations que nous voulons inclure dans le token
