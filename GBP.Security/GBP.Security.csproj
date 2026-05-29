@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GBP.Core\GBP.Core.csproj" />
+    <ProjectReference Include="..\GBP.Domain\GBP.Domain.csproj" />
     <ProjectReference Include="..\GBP.Infra\GBP.Infra.csproj" />
   </ItemGroup>
 

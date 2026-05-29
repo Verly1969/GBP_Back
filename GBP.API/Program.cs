@@ -1,11 +1,4 @@
-using GBP.Core.Interfaces.Repositories;
-using GBP.Core.Interfaces.Services;
-using GBP.Infra.Database.Context;
-using GBP.Infra.Repositories;
-using GBP.Infra.Extensions;
 using GBP.Security.Extensions;
-using GBP.Security.Services.Auth;
-using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +10,6 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddSecuService(builder.Configuration);
-builder.Services.AddInfraServices(builder.Configuration);
 
 var app = builder.Build();
 
