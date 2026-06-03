@@ -39,7 +39,6 @@ namespace GBP.API.Controllers
         }
 
         /// <summary>
-<<<<<<< HEAD
         /// Fonction d'inscription pour les nouveaux utilisateurs.
         /// </summary>
         /// <param name="request"></param>
@@ -66,8 +65,6 @@ namespace GBP.API.Controllers
         }
 
         /// <summary>
-=======
->>>>>>> cd5a8a7e7e6f91cd650125a16ede1543b8dc2cf0
         /// Vérifie le code de vérification à deux facteurs pour un utilisateur donné.
         /// </summary>
         /// <param name="request"></param>
