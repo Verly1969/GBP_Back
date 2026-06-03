@@ -9,5 +9,7 @@ namespace GBP.Core.Interfaces.Repositories
     {
         Task<User?> AddAsync(User user);
         Task<User?> GetByEmailAsync(string email);
+
+        Task<User?> UpdateAsync(User user);
     }
 }

@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="../HashGenerator/WebApplication1/WebApplication1.csproj" Id="20685ff0-07d3-45d2-b943-f13118188278" />
   <Project Path="GBP.API/GBP.API.csproj" />
   <Project Path="GBP.Core/GBP.Core.csproj" />
   <Project Path="GBP.Domain/GBP.Domain.csproj" />

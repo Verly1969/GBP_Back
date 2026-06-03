@@ -1,9 +1,4 @@
-using GBP.Core.Interfaces.Repositories;
-using GBP.Core.Interfaces.Services;
-using GBP.Infra.Database.Context;
-using GBP.Infra.Repositories;
-using GBP.Security.Services.Auth;
-using Microsoft.EntityFrameworkCore;
+using GBP.Security.Extensions;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,13 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<GbpDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("GbpDb")
-        )
-    );
-
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddSecuService(builder.Configuration);
 
 var app = builder.Build();
 
@@ -36,6 +25,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseSecuMiddleware();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

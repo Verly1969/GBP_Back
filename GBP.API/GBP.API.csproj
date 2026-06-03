@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GBP.Infra\GBP.Infra.csproj" />
+    <ProjectReference Include="..\GBP.Core\GBP.Core.csproj" />
     <ProjectReference Include="..\GBP.Security\GBP.Security.csproj" />
   </ItemGroup>
 
