@@ -150,7 +150,7 @@ namespace GBP.Security.Services.Auth
                 IsFirstLogin = false,
                 TwoFactorRequired = true
             };
-<<<<<<< HEAD
+
         }
 
         /// <summary>
@@ -189,8 +189,6 @@ namespace GBP.Security.Services.Auth
 
             // Enregistrer l'utilisateur dans la base de données
             return await userRepository.AddAsync(newUser);
-=======
->>>>>>> cd5a8a7e7e6f91cd650125a16ede1543b8dc2cf0
         }
     }
 }
