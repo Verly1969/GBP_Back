@@ -39,6 +39,32 @@ namespace GBP.API.Controllers
         }
 
         /// <summary>
+        /// Fonction d'inscription pour les nouveaux utilisateurs.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Le nouvel utilisateur créé ou null en cas d'échec</returns>
+        [HttpPost("register")]
+        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
+        {
+            try
+            {
+                User? user = await authService.RegisterAsync(
+                    request.FirstName, request.LastName, request.Email, request.Password);
+                return Ok(user);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "An error occurred during registration.", details = ex.Message });
+            }
+        }
+
+        /// <summary>
         /// Vérifie le code de vérification à deux facteurs pour un utilisateur donné.
         /// </summary>
         /// <param name="request"></param>

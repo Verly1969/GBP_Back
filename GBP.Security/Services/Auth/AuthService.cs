@@ -151,5 +151,43 @@ namespace GBP.Security.Services.Auth
                 TwoFactorRequired = true
             };
         }
+
+        /// <summary>
+        /// Cette méthode gère la logique d'inscription d'un nouvel utilisateur.
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns>Le nouvel utilisateur créé ou null en cas d'échec</returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        public async Task<User?> RegisterAsync(string firstName, string lastName, string email, string password)
+        {
+            // Vérifier si l'utilisateur existe déjà
+            var existingUser = await userRepository.GetByEmailAsync(email);
+            if (existingUser != null)
+            {
+                throw new InvalidOperationException("User with this email already exists");
+            }
+
+            // Hasher le mot de passe
+            var passwordHash = passwordService.HashPassword(password);
+
+            // Créer un nouvel utilisateur
+            var newUser = new User
+            {
+                Id = Guid.NewGuid(),
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                PasswordHash = passwordHash,
+                Role = Role.User,
+                Status = Status.Active,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            // Enregistrer l'utilisateur dans la base de données
+            return await userRepository.AddAsync(newUser);
+        }
     }
 }
