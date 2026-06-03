@@ -8,6 +8,7 @@ namespace GBP.Core.Interfaces.Services.Auth
 {
     public interface IAuthService
     {
+<<<<<<< HEAD
         /// <summary>
         /// Cette méthode gère le processus de connexion pour un utilisateur donné.
         /// </summary>
@@ -33,5 +34,9 @@ namespace GBP.Core.Interfaces.Services.Auth
         /// <param name="password"></param>
         /// <returns>Le nouvel utilisateur créé ou null en cas d'échec</returns>
         Task<User?> RegisterAsync(string firstName, string lastName, string email, string password);
+=======
+        Task<LoginResponseDto> LoginAsync(string email, string password);
+        Task<LoginResponseDto> VerifyTwofactorAsync(string email, string code);
+>>>>>>> cd5a8a7e7e6f91cd650125a16ede1543b8dc2cf0
     }
 }

@@ -4,7 +4,6 @@ using GBP.Infra.Database.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,11 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GBP.Infra.Database.Migrations
 {
     [DbContext(typeof(GbpDbContext))]
-    [Migration("20260529140615_InitialMigration")]
-    partial class InitialMigration
+    partial class GbpDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,60 +21,6 @@ namespace GBP.Infra.Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("GBP.Domain.Entities.SecurityLog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("BanRaison")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("DateAttempt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETUTCDATE()");
-
-                    b.Property<DateTime?>("EndBan")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EndPoint")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("IpAddress")
-                        .IsRequired()
-                        .HasMaxLength(45)
-                        .HasColumnType("nvarchar(45)");
-
-                    b.Property<bool>("IsBanned")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<DateTime?>("StartBan")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserAgent")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IpAddress", "DateAttempt")
-                        .HasDatabaseName("IX_SecurityLog_IpAddress_DateAttempt_BanCheck");
-
-                    b.ToTable("SecurityLog", (string)null);
-                });
 
             modelBuilder.Entity("GBP.Domain.Entities.User", b =>
                 {
@@ -119,6 +62,7 @@ namespace GBP.Infra.Database.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("SecretKeyHash")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -148,8 +92,9 @@ namespace GBP.Infra.Database.Migrations
                             Email = "admin@example.com",
                             FirstName = "User",
                             LastName = "Admin",
-                            PasswordHash = "v1.j8BV0YL+rRLe4si63uUFUg==.8hNiGyzHkCh33TrPllVuFHZOsFTYdm5xfr80PVWiCa4=",
+                            PasswordHash = "password-hash",
                             Role = "Admin",
+                            SecretKeyHash = "secret-key-hash",
                             Status = "Active"
                         });
                 });
