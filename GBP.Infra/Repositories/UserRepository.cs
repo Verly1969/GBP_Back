@@ -14,7 +14,11 @@ namespace GBP.Infra.Repositories
         /// Ajoute un nouvel utilisateur à la base de données.
         /// </summary>
         /// <param name="user"></param>
+<<<<<<< HEAD
         /// <returns>Le nouvel utilisateur créé ou null en cas d'échec</returns>
+=======
+        /// <returns></returns>
+>>>>>>> cd5a8a7e7e6f91cd650125a16ede1543b8dc2cf0
         public async Task<User?> AddAsync(User user)
         {
             if (user is null) return null;
@@ -29,7 +33,11 @@ namespace GBP.Infra.Repositories
         /// Retourne un utilisateur en fonction de son adresse e-mail.
         /// </summary>
         /// <param name="email"></param>
+<<<<<<< HEAD
         /// <returns>L'utilisateur trouvé ou null s'il n'existe pas</returns>
+=======
+        /// <returns></returns>
+>>>>>>> cd5a8a7e7e6f91cd650125a16ede1543b8dc2cf0
         public async Task<User?> GetByEmailAsync(string email)
         {
             if (email is null) return null;
@@ -41,7 +49,11 @@ namespace GBP.Infra.Repositories
         /// Modifie les informations d'un utilisateur existant dans la base de données.
         /// </summary>
         /// <param name="user"></param>
+<<<<<<< HEAD
         /// <returns>L'utilisateur mis à jour ou null en cas d'échec</returns>
+=======
+        /// <returns></returns>
+>>>>>>> cd5a8a7e7e6f91cd650125a16ede1543b8dc2cf0
         public async Task<User?> UpdateAsync(User user)
         {
             if (user is null) return null;
