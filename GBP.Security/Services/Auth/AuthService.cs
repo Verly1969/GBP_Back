@@ -119,7 +119,7 @@ namespace GBP.Security.Services.Auth
             if (string.IsNullOrEmpty(user.SecretKeyHash))
             {
                 var secretKey = totpService.GenerateSecretKey();
-                var qrCodeUri = totpService.GenerateQrCodeUri(user.Email, secretKey);
+                var qrCodeUri = totpService.GenerateQrCodeUri(secretKey, user.Email);
 
                 user.SecretKeyHash = secretKey;
 
@@ -182,6 +182,7 @@ namespace GBP.Security.Services.Auth
                 LastName = lastName,
                 Email = email,
                 PasswordHash = passwordHash,
+                SecretKeyHash = null,
                 Role = Role.User,
                 Status = Status.Active,
                 CreatedAt = DateTime.UtcNow

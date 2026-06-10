@@ -51,5 +51,16 @@ namespace GBP.Infra.Repositories
 
             return user;
         }
+
+        /// <summary>
+        /// Retourne tous les utilisateurs de la base de données.
+        /// </summary>
+        /// <returns>La liste des utilisateurs</returns>
+        public async Task<IEnumerable<User>> GetAllAsync()
+        {
+            return await context.Users
+                .AsNoTracking() // Perment d'améliorer les performances en désactivant le suivi des entités
+                .ToListAsync();
+        }
     }
 }

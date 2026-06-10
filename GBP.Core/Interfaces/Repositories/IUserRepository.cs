@@ -11,5 +11,6 @@ namespace GBP.Core.Interfaces.Repositories
         Task<User?> GetByEmailAsync(string email);
 
         Task<User?> UpdateAsync(User user);
+        Task<IEnumerable<User>> GetAllAsync();
     }
 }

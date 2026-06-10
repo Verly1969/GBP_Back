@@ -1,10 +1,12 @@
 ﻿using GBP.Core.Interfaces.Repositories;
 using GBP.Core.Interfaces.Services.Auth;
+using GBP.Core.Interfaces.Services.Data;
 using GBP.Core.Interfaces.Services.Tools;
 using GBP.Infra.Database.Context;
 using GBP.Infra.Repositories;
 using GBP.Security.Middlewares;
 using GBP.Security.Services.Auth;
+using GBP.Security.Services.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +35,7 @@ namespace GBP.Security.Extensions
             );
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<ITotpService, TotpService>();
