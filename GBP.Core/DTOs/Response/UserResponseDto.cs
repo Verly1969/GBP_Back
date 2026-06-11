@@ -10,7 +10,7 @@ namespace GBP.Core.DTOs.Response
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public required string Email { get; set; }
-        public Role Role { get; set; }
-        public Status Status { get; set; }
+        public required string Role { get; set; }
+        public required string Status { get; set; }
     }
 }

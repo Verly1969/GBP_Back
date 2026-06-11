@@ -9,5 +9,6 @@ namespace GBP.Core.Interfaces.Services.Data
     public interface IUserService
     {
         Task<IEnumerable<UserResponseDto>> GetUsersAsync();
+        Task<bool> ChangeStatusAsync(string email);
     }
 }

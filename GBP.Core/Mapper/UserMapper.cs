@@ -16,12 +16,13 @@ namespace GBP.Core.Mapper
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                Role = user.Role,
-                Status = user.Status
+                Role = user.Role.ToString(),
+                Status = user.Status.ToString()
             };
         }
 
         public static IEnumerable<UserResponseDto> ToUserListResponseDtos(this IEnumerable<User> users) =>
             users.Select(user => user.ToUserResponseDto());
+
     }
 }
