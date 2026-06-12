@@ -13,6 +13,7 @@ namespace GBP.Infra.Database.Context
         public DbSet<SecurityLog> SecurityLogs { get; set; } = null!;
         public DbSet<Account> Accounts { get; set; } = null!;
         public DbSet<AccountType> AccountTypes { get; set; } = null!;
+        public DbSet<CreditType> CreditTypes { get; set; } = null!;
 
         // Override OnModelCreating to apply configurations
         protected override void OnModelCreating(ModelBuilder modelBuilder)

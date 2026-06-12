@@ -37,8 +37,10 @@ namespace GBP.Security.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountTypeRepository, AccountTypeRepository>();
+            services.AddScoped<ICreditTypeRepository, CreditTypeRepository>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAccountTypeService, AccountTypeService>();
+            services.AddScoped<ICreditTypeService, CreditTypeService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtService, JwtService>();

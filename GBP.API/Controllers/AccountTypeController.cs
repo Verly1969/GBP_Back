@@ -99,6 +99,13 @@ namespace GBP.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Supprime un type de compte existant en fonction de son ID 
+        /// et des données fournies dans le corps de la requête.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <returns>Ok ou une erreur si non trouvé.</returns>
         [HttpDelete("{id:int}")]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(204, StatusCode = 204)]
