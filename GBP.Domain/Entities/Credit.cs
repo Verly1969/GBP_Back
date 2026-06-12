@@ -27,6 +27,10 @@ public class Credit
     public required Account Account { get; set; }
     public required CreditType CreditType { get; set; }
 
+    // Navigation properties - Auto référence
+    public Credit? PreviousCredit { get; set; }
+    public ICollection<Credit> NextCredits { get; set; } = [];
+
     // Navigation properties - Child entities
     public ICollection<Payment> Payments { get; set; } = [];
 }

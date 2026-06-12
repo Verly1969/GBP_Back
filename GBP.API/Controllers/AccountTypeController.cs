@@ -95,7 +95,7 @@ namespace GBP.API.Controllers
             }
             catch (ArgumentException)
             {
-                return BadRequest( new { Message = "Données invalides" });
+                return BadRequest( new { Message = "Données invalides" } );
             }
         }
 
