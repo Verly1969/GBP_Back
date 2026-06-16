@@ -84,11 +84,11 @@ namespace GBP.API.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return NotFound( new { Message = "Type de crédit non trouvé" } );
+                return NotFound( new { message = "Type de crédit non trouvé" } );
             }
             catch (ArgumentException)
             {
-                return BadRequest(new { Message = "Données invalides" });
+                return BadRequest(new { message = "Données invalides" });
             }
         }
 
@@ -114,7 +114,7 @@ namespace GBP.API.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return NotFound(new { Message = "Type de crédit non trouvé" });
+                return NotFound(new { message = "Type de crédit non trouvé" });
             }
         }
     }

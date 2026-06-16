@@ -10,7 +10,7 @@ namespace GBP.Core.Interfaces.Services.Data
     {
         Task<IEnumerable<CreditResponseDto>> GetAllByAccountIdAsync(Guid accountId);
         Task<CreditResponseDto?> GetByIdAsync(Guid creditId);
-        Task<CreditResponseDto> CreateAsync(CreditRequestDto request, Guid accountId);
+        Task<CreditResponseDto> CreateAsync(CreditRequestDto request, Guid accountId, Guid userId);
         Task<CreditResponseDto?> UpdateAsync(Guid creditId, CreditRequestDto request);
         Task<bool> DeleteAsync(Guid creditId);
     }

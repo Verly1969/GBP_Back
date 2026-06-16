@@ -105,11 +105,11 @@ namespace GBP.API.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return NotFound( new { Message = "Compte non trouvé" });
+                return NotFound( new { message = "Compte non trouvé" });
             }
             catch (ArgumentException) 
             {
-                return BadRequest( new { Message = "Requête invalide" });
+                return BadRequest( new { message = "Requête invalide" });
             }
         }
 
@@ -132,7 +132,7 @@ namespace GBP.API.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return NotFound( new { Message = "Compte non trouvé" });
+                return NotFound( new { message = "Compte non trouvé" });
             }
         }
     }

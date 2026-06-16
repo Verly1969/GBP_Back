@@ -51,6 +51,7 @@ namespace GBP.Infra.Repositories
             return await _context.Credits
                 .AsNoTracking()
                 .Include(c => c.CreditType)
+                .Include(c => c.Account)
                 .Where(c => c.AccountId == accountId)
                 .ToListAsync();
         }

@@ -9,7 +9,9 @@ using System.Text;
 
 namespace GBP.Security.Services.Data
 {
-    public class CreditService(ICreditRepository _creditRepository) : ICreditService
+    public class CreditService(
+        ICreditRepository _creditRepository,
+        IAccountRepository _accountRepository) : ICreditService
     {
         /// <summary>
         /// Crée un nouveau crédit pour un compte donné.
@@ -17,12 +19,28 @@ namespace GBP.Security.Services.Data
         /// <param name="request"></param>
         /// <param name="accountId"></param>
         /// <returns>Le crédit créé.</returns>
-        public async Task<CreditResponseDto> CreateAsync(CreditRequestDto request, Guid accountId)
+        public async Task<CreditResponseDto> CreateAsync(CreditRequestDto request, Guid accountId, Guid userId)
         {
+            // Vérifier que le compte existe
+            var account = await _accountRepository.GetByIdAsync(accountId)
+                ?? throw new KeyNotFoundException(
+                    $"Le compte avec l'identifiant {accountId} est introuvable.");
+
+            // Vérifier que le compte est bien attribué à l'utilisateur courant
+            if (account.UserId != userId) 
+                throw new UnauthorizedAccessException(
+                    "Vous n'êtes pas autorisé à accéder à ce compte.");
+
+            // On vérifie qu'il s'agit bien d'un compte courant
+            if (account.AccountType.Name != "Courant")
+                throw new InvalidOperationException(
+                    "Ce compte ne peut pas être utilisé pour enregistrer un crédit " +
+                    "Veuillez utilisé un compte courant");
+
             var credit = request.ToEntity(accountId);
             var created = await _creditRepository.AddAsync(credit);
 
-            // Recherger avec Account + CreditType pour le mapper
+            // Recharger avec Account + CreditType pour le mapper
             var result = await _creditRepository.GetByIdAsync(created.Id);
 
             return result!.ToResponse();
