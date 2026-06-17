@@ -15,6 +15,8 @@ namespace GBP.Infra.Database.Context
         public DbSet<AccountType> AccountTypes { get; set; } = null!;
         public DbSet<Credit> Credits { get; set; } = null!;
         public DbSet<CreditType> CreditTypes { get; set; } = null!;
+        public DbSet<Category> Categories { get; set; } = null!;
+        public DbSet<SubCategory> SubCategories { get; set; } = null!;
 
         // Override OnModelCreating to apply configurations
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -7,14 +7,9 @@ namespace GBP.Domain.Entities;
 public class Category
 {
     public int Id { get; set; }
-    public string? Name { get; set; }
-    public string? SubCategory { get; set; }
-    
-    // Auto référence
-    public int? ParentId { get; set; }
+    public required string Name { get; set; } = null!;
 
     // Navigation properties
-    public Category? Parent { get; set; }
-    public ICollection<Category> Children { get; set; } = [];
+    public ICollection<SubCategory> SubCategories { get; set; } = [];
     public ICollection<Transaction> Transactions { get; set; } = [];
 }
