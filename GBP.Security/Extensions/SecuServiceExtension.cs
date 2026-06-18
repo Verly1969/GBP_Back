@@ -41,12 +41,14 @@ namespace GBP.Security.Extensions
             services.AddScoped<ICreditRepository, CreditRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
+            services.AddScoped<ITransactionTypeRepository, TransactionTypeRepository>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAccountTypeService, AccountTypeService>();
             services.AddScoped<ICreditTypeService, CreditTypeService>();
             services.AddScoped<ICreditService, CreditService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ISubCategoryService, SubCategoryService>();
+            services.AddScoped<ITransactionTypeService, TransactionTypeService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtService, JwtService>();
