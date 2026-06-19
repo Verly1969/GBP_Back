@@ -49,7 +49,7 @@ namespace GBP.Infra.Repositories
         {
             return await _context.SubCategories
                 .AsNoTracking()
-                .Include(c => c.Category)
+                .Include(s => s.Category)
                 .Where(s => s.CategoryId == categoryId)
                 .ToListAsync();
         }
@@ -61,7 +61,9 @@ namespace GBP.Infra.Repositories
         /// <returns>La sous-catégorie trouvée ou null</returns>
         public async Task<SubCategory?> GetByIdAsync(int id)
         {
-            var entity = await _context.SubCategories.FirstOrDefaultAsync(s => s.Id == id);
+            var entity = await _context.SubCategories
+                .Include(s => s.Category)
+                .FirstOrDefaultAsync(s => s.Id == id);
 
             if (entity is null) return null;
 

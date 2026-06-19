@@ -23,7 +23,7 @@ namespace GBP.Core.Mapper
                 Id = subCategory.Id,
                 Name = subCategory.Name,
                 CategoryId = subCategory.CategoryId,
-                CategoryName = subCategory.Category.Name ?? "N / A"
+                CategoryName = subCategory.Category?.Name ?? string.Empty
             };
         }
 
