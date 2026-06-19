@@ -381,6 +381,61 @@ namespace GBP.Infra.Database.Migrations
                         });
                 });
 
+            modelBuilder.Entity("GBP.Domain.Entities.Transaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateOfTransaction")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<Guid>("SourceAccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SubCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("TargetAccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("TransactionTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("Id")
+                        .HasDatabaseName("IX_Transactions_SourceAccountId");
+
+                    b.HasIndex("SourceAccountId")
+                        .HasDatabaseName("IX_Transactions_SourceAccountId1");
+
+                    b.HasIndex("SubCategoryId");
+
+                    b.HasIndex("TargetAccountId");
+
+                    b.HasIndex("TransactionTypeId");
+
+                    b.ToTable("Transactions", (string)null);
+                });
+
             modelBuilder.Entity("GBP.Domain.Entities.TransactionType", b =>
                 {
                     b.Property<int>("Id")
@@ -560,14 +615,60 @@ namespace GBP.Infra.Database.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("GBP.Domain.Entities.Transaction", b =>
+                {
+                    b.HasOne("GBP.Domain.Entities.Account", null)
+                        .WithMany("Transactions")
+                        .HasForeignKey("AccountId");
+
+                    b.HasOne("GBP.Domain.Entities.Category", null)
+                        .WithMany("Transactions")
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("GBP.Domain.Entities.Account", "SourceAccount")
+                        .WithMany()
+                        .HasForeignKey("SourceAccountId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GBP.Domain.Entities.SubCategory", "SubCategory")
+                        .WithMany("Transactions")
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GBP.Domain.Entities.Account", "TargetAccount")
+                        .WithMany()
+                        .HasForeignKey("TargetAccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("GBP.Domain.Entities.TransactionType", "TransactionType")
+                        .WithMany("Transactions")
+                        .HasForeignKey("TransactionTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("SourceAccount");
+
+                    b.Navigation("SubCategory");
+
+                    b.Navigation("TargetAccount");
+
+                    b.Navigation("TransactionType");
+                });
+
             modelBuilder.Entity("GBP.Domain.Entities.Account", b =>
                 {
                     b.Navigation("Credits");
+
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("GBP.Domain.Entities.Category", b =>
                 {
                     b.Navigation("SubCategories");
+
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("GBP.Domain.Entities.Credit", b =>
@@ -578,6 +679,16 @@ namespace GBP.Infra.Database.Migrations
             modelBuilder.Entity("GBP.Domain.Entities.CreditType", b =>
                 {
                     b.Navigation("Credits");
+                });
+
+            modelBuilder.Entity("GBP.Domain.Entities.SubCategory", b =>
+                {
+                    b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("GBP.Domain.Entities.TransactionType", b =>
+                {
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("GBP.Domain.Entities.User", b =>

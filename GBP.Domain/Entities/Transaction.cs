@@ -14,12 +14,12 @@ public class Transaction
     // Foreigen Keys
     public Guid SourceAccountId { get; set; }
     public Guid? TargetAccountId { get; set; }
-    public int CategoryId { get; set; }
+    public int SubCategoryId { get; set; }
     public int TransactionTypeId { get; set; }
 
     // Navigation Properties - Parent entities
     public required Account SourceAccount { get; set; }
     public Account? TargetAccount { get; set; }
-    public required Category Categorie { get; set; }
+    public required SubCategory SubCategory { get; set; }
     public required TransactionType TransactionType { get; set; }
 }

@@ -13,14 +13,11 @@ namespace GBP.Infra.Repositories
 
         /// <summary>
         /// Ajoute un nouveau compte à la base de données et retourne le compte ajouté. 
-        /// Si le compte est null, retourne null.
         /// </summary>
         /// <param name="account"></param>
-        /// <returns>Le compte ajouté ou null si le compte est null.</returns>
+        /// <returns>Le compte ou une OperationCancelledException.</returns>
         public async Task<Account?> AddAsync(Account account)
         {
-            if (account is null) return null;
-
             await _context.Accounts.AddAsync(account);
             await _context.SaveChangesAsync();
 

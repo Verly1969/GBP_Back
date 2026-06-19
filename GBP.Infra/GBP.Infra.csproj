@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Database\Migrations\" />
     <Folder Include="Database\Context\" />
+    <Folder Include="Database\Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
